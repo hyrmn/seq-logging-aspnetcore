@@ -37,7 +37,7 @@ try
     {
         var customerId = Guid.NewGuid();
         app.Logger.LogInformation($"Received request {Guid.NewGuid()} for {customerId}");
-        svc.DoWork(customerId);
+        svc.DoWorkButInterpolate(customerId);
         return "Hello World!";
     });
 
@@ -67,5 +67,10 @@ public class SomeService
     public void DoWork(Guid customerId)
     {
         Logger.LogInformation("Doing work for {CustomerId}", customerId);
+    }
+
+    public void DoWorkButInterpolate(Guid customerId)
+    {
+        Logger.LogInformation($"Doing work for {customerId}");
     }
 }
