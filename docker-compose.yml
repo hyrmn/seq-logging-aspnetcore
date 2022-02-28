@@ -1,0 +1,10 @@
+version: "3.7"
+services:
+
+  seq_host:
+    image: datalust/seq
+    environment:
+      - ACCEPT_EULA=Y
+    ports:
+      - "8041:80"
+      - "5341:5341"
