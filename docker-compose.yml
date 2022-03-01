@@ -6,6 +6,7 @@ services:
     image: sample_web
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - Serilog__WriteTo__1__Args__serverUrl=http://seq_host:5341
     ports:
       - "5273:80"
       - "7273:443"
@@ -27,4 +28,3 @@ services:
 
 networks:
   sample_app_network:
-     name: awesome_logging_network

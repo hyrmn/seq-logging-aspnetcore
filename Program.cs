@@ -9,18 +9,16 @@ Log.Information("Starting up");
 try
 {
     var builder = WebApplication.CreateBuilder(args);
+    builder.Configuration.AddEnvironmentVariables();
 
-    builder.Host.UseSerilog((ctx, lc) => lc
-        .Enrich.FromLogContext()
-        .WriteTo.Console()
-        .ReadFrom.Configuration(ctx.Configuration));
-
-    builder.Services.AddLogging(loggingBuilder =>
-    {
-        loggingBuilder.AddSeq();
+    builder.Host.UseSerilog((hostContext, loggerConfiguration) => {
+        loggerConfiguration.ReadFrom.Configuration(hostContext.Configuration);
+        var root = (IConfigurationRoot)hostContext.Configuration;
+        var debugView = root.GetDebugView();
     });
 
     builder.Services.AddScoped<SomeService>();
+
     var app = builder.Build();
 
     app.UseSerilogRequestLogging();
