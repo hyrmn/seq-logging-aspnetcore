@@ -7,18 +7,12 @@ I hope to show why you should prefer the latter with this simple repository.
 
 ## Running the application
 
-This repository includes a `docker-compose` file for [Seq](https://datalust.co/seq), a wonderful centralized application logging platform that may fit your needs well. But, importantly for our needs, it helps with illustrating structured logging and why it's so powerful.
+This repository includes a `docker-compose` file which will start [Seq](https://datalust.co/seq) and the application. Seq is a wonderful centralized application logging platform that may fit your needs well. But, importantly for now, it helps with illustrating structured logging and why it's so powerful.
 
-First, start up the container:
+Start up the container:
 
 ```powershell
 docker-compose up
-```
-
-In another console, you can run the application code via the command line as well
-
-```powershell
-dotnet run
 ```
 
 The code will log to the console and to Seq; using Serilog as the logging library. There are two endpoints. One uses structured logging and the other uses string interpolation.
