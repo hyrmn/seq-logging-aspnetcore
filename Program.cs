@@ -11,11 +11,9 @@ try
     var builder = WebApplication.CreateBuilder(args);
     builder.Configuration.AddEnvironmentVariables();
 
-    builder.Host.UseSerilog((hostContext, loggerConfiguration) => {
-        loggerConfiguration.ReadFrom.Configuration(hostContext.Configuration);
-        var root = (IConfigurationRoot)hostContext.Configuration;
-        var debugView = root.GetDebugView();
-    });
+    builder.Host.UseSerilog((hostContext, loggerConfiguration) => 
+        loggerConfiguration.ReadFrom.Configuration(hostContext.Configuration)
+    );
 
     builder.Services.AddScoped<SomeService>();
 
